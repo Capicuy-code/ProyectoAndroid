@@ -1,5 +1,6 @@
 [app]
 title = Mi Negocio
+source.dir = .
 package.name = minegocio
 package.domain = org.test
 source.include_exts = py,png,jpg,kv,atlas
