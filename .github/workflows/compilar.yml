@@ -10,17 +10,11 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev cmake libffi-dev libssl-dev
           pip3 install --user --upgrade buildozer
-      - name: Instalar SDK y Aceptar licencias
-        run: |
-          # Instalamos las herramientas de Android manualmente
-          yes | sdkmanager --sdk_root=$HOME/.buildozer/android/platform/android-sdk "platform-tools" "platforms;android-33" "build-tools;33.0.0"
-          yes | sdkmanager --sdk_root=$HOME/.buildozer/android/platform/android-sdk --licenses
       - name: Build con Buildozer
         run: |
           buildozer android debug
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BUILDOZER_DEBUG: 2
       - name: Subir APK
         uses: actions/upload-artifact@v4
         with:
