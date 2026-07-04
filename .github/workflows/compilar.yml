@@ -13,9 +13,10 @@ jobs:
       - name: Aceptar licencias y Build
         run: |
           mkdir -p ~/.android && touch ~/.android/repositories.cfg
-          yes | buildozer android debug
+          buildozer android debug
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BUILDOZER_DEBUG: 2
       - name: Subir APK
         uses: actions/upload-artifact@v4
         with:
