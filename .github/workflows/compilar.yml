@@ -12,7 +12,9 @@ jobs:
           pip3 install --user --upgrade buildozer
       - name: Aceptar licencias y Build
         run: |
-          mkdir -p ~/.android && touch ~/.android/repositories.cfg
+          mkdir -p ~/.android
+          touch ~/.android/repositories.cfg
+          yes | sdkmanager --licenses || true
           buildozer android debug
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
